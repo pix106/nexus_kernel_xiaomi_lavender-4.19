@@ -50,6 +50,9 @@ COMPILER=proton
 elif [ "$1" = "--aosp" ];
 then
 COMPILER=aosp
+elif [ "$1" = "--azure" ];
+then
+COMPILER=azure
 elif [ "$1" = "--neutron" ];
 then
 COMPILER=neutron
@@ -69,6 +72,12 @@ function cloneTC() {
 	then
 	post_msg " Cloning Proton Clang ToolChain "
 	git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
+	PATH="${KERNEL_DIR}/clang/bin:$PATH"
+	
+	elif [ $COMPILER = "azure" ];
+	then
+	post_msg " Cloning Azure Clang ToolChain "
+	git clone --depth=1  https://gitlab.com/Panchajanya1999/azure-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
 	
 	elif [ $COMPILER = "eva" ];
