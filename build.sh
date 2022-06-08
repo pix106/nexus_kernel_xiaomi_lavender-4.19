@@ -53,19 +53,19 @@ COMPILER=aosp
 elif [ "$1" = "--azure" ];
 then
 COMPILER=azure
-elif [ "$1" = "--neutron" ];
+elif [ "$1" = "--nexus" ];
 then
-COMPILER=neutron
+COMPILER=nexus
 fi
 
 ##----------------------------------------------------------##
 # Clone ToolChain
 function cloneTC() {
 	
-	if [ $COMPILER = "neutron" ];
+	if [ $COMPILER = "nexus" ];
 	then
-	post_msg " Cloning Neutron Clang ToolChain "
-	git clone --depth=1  https://github.com/Neutron-Clang/neutron-toolchain.git clang
+	post_msg " Cloning Nexus Clang 14.0.5 ToolChain "
+	git clone --depth=1  https://gitlab.com/Project-Nexus/nexus-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
 	
 	elif [ $COMPILER = "proton" ];
