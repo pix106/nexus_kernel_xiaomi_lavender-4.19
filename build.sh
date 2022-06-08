@@ -22,6 +22,9 @@ DEFCONFIG=lavender_defconfig
 # Files
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 
+# Linker
+LINKER=ld.lld
+
 # Verbose Build
 VERBOSE=0
 
@@ -181,7 +184,10 @@ START=$(date +"%s")
 	   then
 	       make -kj$(nproc --all) O=out \
 	       ARCH=arm64 \
-		   CC=clang \
+               CC=clang \
+	       LLVM=1 \
+	       LLVM_IAS=1 \
+	       LD=${LINKER} \
 	       CROSS_COMPILE=aarch64-linux-gnu- \
 	       CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
 	       V=$VERBOSE 2>&1 | tee error.log
